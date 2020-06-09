@@ -8,7 +8,7 @@
     <ul>
       <li :key="item.studentid" v-for="item in all">{{item}}</li>
     </ul>
-    end and show
+    end show
   </div>
 </template>
 <style scoped>
