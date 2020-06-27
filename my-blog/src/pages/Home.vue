@@ -5,7 +5,12 @@
 </template>
 <script>
 export default {
-  
+  data () {
+    return {
+      world:"hello world",
+      hello:"world"
+    }
+  }
 }
 </script>
 <style scoped>
