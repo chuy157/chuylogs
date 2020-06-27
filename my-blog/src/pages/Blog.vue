@@ -7,7 +7,7 @@
     <button @click="getAll">查询所有</button>
     <p>hahah</p>
     <ul>
-      <li :key="item.studentid" v-for="item in all">{{item}}</li>
+      <li :key="item.studentid" v-for="item in all">{{item.studentid}} {{item.studentname}} {{item.studentage}}</li>
     </ul>
   </div>
 </template>
@@ -33,7 +33,6 @@ export default {
       this.$http.get('/api/getValue', {
         params: {id: 1}
       }).then( (res) => {
-        console.log('res', res);
         this.inpContent = res.data[0].studentname;
         this.inpage = res.data[0].studentage;
         
@@ -41,16 +40,17 @@ export default {
     },
     setValue() {
       // axios.post('/', {})
+      var that=this;
       this.$http.post('/api/setValue', {
-        name: this.inpContent,age:this.inpage
-      }).then( (res) => {
-        console.log('res', res);
+        name: that.inpContent,age:that.inpage
       })
+      // .then( (res) => {
+      //   console.log('res', res);
+      // })
     },
     getAll() {
       // axios.get('/', {params: ''})
       this.$http.get('/api/getAll').then( (res) => {
-        console.log('res', res);
         this.all=res.data
       })
     }

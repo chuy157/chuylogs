@@ -23,11 +23,11 @@ module.exports = {
     })
   },
   setValue(req, res, next) {
-    console.log(req.body);
-    var id = req.body.id, name = req.body.name;
+    var name = req.body.name;
+    var age = req.body.age;
     pool.getConnection((err, connection) => {
       var sql = sqlMap.setValue;
-      connection.query(sql, [name, id], (err, result) => {
+      connection.query(sql, [name, age], (err, result) => {
           res.json(result);
           connection.release();
       })
