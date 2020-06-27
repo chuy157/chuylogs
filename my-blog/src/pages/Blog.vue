@@ -5,6 +5,7 @@
     <el-button type="primary" @click="getValue">获取数据</el-button>
     <el-button type="primary" @click="setValue">添加数据</el-button>
     <button @click="getAll">查询所有</button>
+    <p>hahah</p>
     <ul>
       <li :key="item.studentid" v-for="item in all">{{item}}</li>
     </ul>
