@@ -41,5 +41,16 @@ module.exports = {
           connection.release();
       })
     })
+  },
+  deleteId(req, res, next) {
+    var id = req.body.id;
+    pool.getConnection((err, connection) => {
+      var sql = sqlMap.deleteId;
+      connection.query(sql,[id],(err, result) => {
+          res.json(result);
+          connection.release();
+      })
+    })
   }
+
 }

@@ -12,4 +12,8 @@ router.post('/setValue', (req, res, next) => {
 router.get('/getAll', (req, res, next) => {
   api.getAll(req, res, next);
 });
+
+router.post('/deleteId', (req, res, next) => {
+  api.deleteId(req, res, next);
+});
 module.exports = router;

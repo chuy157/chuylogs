@@ -2,12 +2,11 @@
   <div class="">
     name:<el-input class="inpcontent" v-model="inpContent"></el-input>
      age:<el-input class="inpcontent" v-model="inpage"></el-input>
-    <el-button type="primary" @click="getValue">获取数据</el-button>
+    <el-button type="primary" @click="getAll">获取数据</el-button>
     <el-button type="primary" @click="setValue">添加数据</el-button>
-    <button @click="getAll">查询所有</button>
     <p>hahah</p>
     <ul>
-      <li :key="item.studentid" v-for="item in all">{{item.studentid}} {{item.studentname}} {{item.studentage}}</li>
+      <li :key="item.studentid" v-for="item in all">{{item.studentid}} {{item.studentname}} {{item.studentage}} <button @click="deleteby(item.studentid)">删除</button> </li>
     </ul>
   </div>
 </template>
@@ -43,15 +42,21 @@ export default {
       var that=this;
       this.$http.post('/api/setValue', {
         name: that.inpContent,age:that.inpage
+      }).then( (res) => {
+        this.getAll()
       })
-      // .then( (res) => {
-      //   console.log('res', res);
-      // })
     },
     getAll() {
       // axios.get('/', {params: ''})
       this.$http.get('/api/getAll').then( (res) => {
         this.all=res.data
+      })
+    },
+    deleteby(studentid){
+      this.$http.post('/api/deleteId', {
+       id: studentid
+       }).then( (res) => {
+       this.getAll()
       })
     }
   }
